@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import CourseEnquiryForm from '@/components/CourseEnquiryForm';
 import SuccessConfirmation from '@/components/SuccessConfirmation';
-import { GraduationCap, Users, Award, BookOpen, Code, Database, Palette } from 'lucide-react';
+import { GraduationCap, Users, Award, BookOpen, Code, Database, Palette, MapPin, Phone, Mail } from 'lucide-react';
 
 const Index = () => {
   const [showSuccessPage, setShowSuccessPage] = useState(false);
