@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import CourseEnquiryForm from '@/components/CourseEnquiryForm';
 import SuccessConfirmation from '@/components/SuccessConfirmation';
@@ -62,29 +61,7 @@ const Index = () => {
                 Fill out our enquiry form and take the first step towards your future success.
               </p>
               
-              {/* Address Section */}
-              <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 max-w-3xl mx-auto mb-12">
-                <div className="flex items-center justify-center mb-4">
-                  <MapPin className="h-6 w-6 text-blue-600 mr-2" />
-                  <h2 className="text-xl font-semibold">Our Location</h2>
-                </div>
-                <p className="text-gray-700">
-                  Tecmac Education, Sow-Ma Complex,<br />
-                  243, 1st Floor, Sathy Rd,<br />
-                  Gandhipuram, Coimbatore,<br />
-                  Tamil Nadu 641012
-                </p>
-                <div className="flex justify-center space-x-4 mt-4">
-                  <div className="flex items-center">
-                    <Phone className="h-4 w-4 text-blue-600 mr-1" />
-                    <span className="text-sm">+91 9994779308</span>
-                  </div>
-                  <div className="flex items-center">
-                    <Mail className="h-4 w-4 text-blue-600 mr-1" />
-                    <span className="text-sm">tecmaceducation@gmail.com</span>
-                  </div>
-                </div>
-              </div>
+              {/* Address section removed from here as requested */}
               
               {/* Course Categories */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12">
