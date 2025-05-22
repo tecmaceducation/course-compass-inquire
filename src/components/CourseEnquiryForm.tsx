@@ -38,21 +38,53 @@ const CourseEnquiryForm: React.FC<CourseEnquiryFormProps> = ({ onSubmitSuccess }
   
   const [isLoadingLocation, setIsLoadingLocation] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [selectedCourseCategory, setSelectedCourseCategory] = useState<string | null>(null);
 
-  const courses = [
-    'Computer Science & Engineering',
-    'Information Technology',
-    'Electronics & Communication',
-    'Mechanical Engineering',
-    'Civil Engineering',
-    'Business Administration (MBA)',
-    'Bachelor of Commerce (B.Com)',
-    'Bachelor of Science (B.Sc)',
-    'Master of Science (M.Sc)',
-    'Digital Marketing',
-    'Data Science & Analytics',
-    'Artificial Intelligence & Machine Learning'
+  // Courses organized by category
+  const courseCategories = [
+    {
+      name: "Programming Courses",
+      courses: [
+        "Master In Software Technology (MST)",
+        "Advanced Diploma In Basic Programming (ADBP)",
+        "Advanced Diploma In Java Programming (ADJP)",
+        "Advanced Diploma In Python Programming (ADPP)",
+        "Full Stack Java Programming",
+        "Full Stack Python Programming",
+        "Full Stack Web Development"
+      ]
+    },
+    {
+      name: "Financial Courses",
+      courses: [
+        "Advanced Diploma In Computer Application (ADCA)",
+        "Diploma In Computer Application (DCA)",
+        "Tally ERP 9",
+        "Tally Prime"
+      ]
+    },
+    {
+      name: "Multimedia Courses",
+      courses: [
+        "Master Diploma In Graphic Animation (MDGA)",
+        "UI/UX Designing",
+        "Adobe Photoshop",
+        "Adobe Illustrator",
+        "Adobe XD",
+        "Coral Draw"
+      ]
+    }
   ];
+
+  // Get all courses for the select input
+  const getAllCourses = () => {
+    if (!selectedCourseCategory) {
+      return [];
+    }
+    
+    const category = courseCategories.find(cat => cat.name === selectedCourseCategory);
+    return category ? category.courses : [];
+  };
 
   const handleInputChange = (field: keyof FormData, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
@@ -189,6 +221,7 @@ const CourseEnquiryForm: React.FC<CourseEnquiryFormProps> = ({ onSubmitSuccess }
         state: '',
         courseOfInterest: ''
       });
+      setSelectedCourseCategory(null);
 
       onSubmitSuccess();
     } catch (error) {
@@ -334,23 +367,45 @@ const CourseEnquiryForm: React.FC<CourseEnquiryFormProps> = ({ onSubmitSuccess }
               Course Information
             </h3>
             
-            <div className="space-y-2">
-              <Label htmlFor="courseOfInterest">Course of Interest *</Label>
-              <Select
-                value={formData.courseOfInterest}
-                onValueChange={(value) => handleInputChange('courseOfInterest', value)}
-              >
-                <SelectTrigger>
-                  <SelectValue placeholder="Select a course you're interested in" />
-                </SelectTrigger>
-                <SelectContent>
-                  {courses.map((course) => (
-                    <SelectItem key={course} value={course}>
-                      {course}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+            <div className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="courseCategory">Course Category *</Label>
+                <Select
+                  value={selectedCourseCategory || ""}
+                  onValueChange={(value) => setSelectedCourseCategory(value)}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select a course category" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {courseCategories.map((category) => (
+                      <SelectItem key={category.name} value={category.name}>
+                        {category.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+              
+              <div className="space-y-2">
+                <Label htmlFor="courseOfInterest">Course of Interest *</Label>
+                <Select
+                  value={formData.courseOfInterest}
+                  onValueChange={(value) => handleInputChange('courseOfInterest', value)}
+                  disabled={!selectedCourseCategory}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder={selectedCourseCategory ? "Select a course" : "Please select a category first"} />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {getAllCourses().map((course) => (
+                      <SelectItem key={course} value={course}>
+                        {course}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
             </div>
           </div>
 

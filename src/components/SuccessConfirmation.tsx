@@ -2,7 +2,7 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { CheckCircle, GraduationCap, Mail, Phone, Clock } from 'lucide-react';
+import { CheckCircle, GraduationCap, Mail, Phone, Clock, MapPin } from 'lucide-react';
 
 interface SuccessConfirmationProps {
   onBackToForm: () => void;
@@ -64,8 +64,9 @@ const SuccessConfirmation: React.FC<SuccessConfirmationProps> = ({ onBackToForm 
           <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
             <h4 className="font-semibold text-blue-800 mb-2">Need immediate assistance?</h4>
             <div className="text-sm text-blue-700 space-y-1">
-              <p>📞 Call us: <span className="font-medium">+91 12345 67890</span></p>
-              <p>📧 Email: <span className="font-medium">admissions@institution.edu</span></p>
+              <p>📞 Call us: <span className="font-medium">+91 9994779308</span></p>
+              <p>📧 Email: <span className="font-medium">tecmaceducation@gmail.com</span></p>
+              <p>📍 Address: <span className="font-medium">Tecmac Education, Sow-Ma Complex, 243, 1st Floor, Sathy Rd, Gandhipuram, Coimbatore, Tamil Nadu 641012</span></p>
               <p>🕒 Office Hours: Monday - Saturday, 9:00 AM - 6:00 PM</p>
             </div>
           </div>
@@ -80,7 +81,7 @@ const SuccessConfirmation: React.FC<SuccessConfirmationProps> = ({ onBackToForm 
             </Button>
             <Button 
               className="flex-1 bg-blue-600 hover:bg-blue-700"
-              onClick={() => window.open('https://institution.edu', '_blank')}
+              onClick={() => window.open('https://tecmaceducation.com', '_blank')}
             >
               Visit Our Website
             </Button>
